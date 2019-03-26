@@ -50,7 +50,7 @@ p:hover{
 
     <div class="input-group col-md-7 center">
         <!--search box-->
-        <input id="search" type="search" class="form-control py-2" placeholder="Search" value="" autocomplete="off" onkeydown="if (event.keyCode == 13 || event.which == 13) { location='http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('search').value);}">
+        <input id="search" type="search" class="form-control py-2" placeholder="Search" value="" autocomplete="off" onkeydown="if (event.keyCode == 13 || event.which == 13) { getsearch();}">
         <span class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" onclick="getsearch();">
                     <i class="fa fa-search"></i>
@@ -104,7 +104,10 @@ $(document).ready(function(){
 });
 
 function getsearch(){
-    window.location.href ='http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('search').value);
+    input_length = $('#search').val().length;
+    if (input_length >= 3)
+        window.location.href ='http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('search').value);
+
 }
 </script>
 </body>
