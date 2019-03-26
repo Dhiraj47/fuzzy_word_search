@@ -29,27 +29,46 @@ p:hover{
 
 }
 
+/* hide the blue outline */
+.form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
+}
+
+
 
     </style>
-
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 </head>
 <body>
 
 <div class='container'>
 
     <center><h1 class="mt-3">Word Search</h1></center>
-        <div class="col-xl-7 center">
-            <input id="search" type="search" class="form-control" placeholder="Search" value="">
-        <div id="search_result">
 
-        </div>
+    <div class="input-group col-md-7 center">
+        <!--search box-->
+        <input id="search" type="search" class="form-control py-2" placeholder="Search" value="" autocomplete="off">
+        <span class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" onclick="getsearch();">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
     </div>
+    <!--result div-->
+    <div id="search_result" class="col-md-7 center border rounded">
+
+    </div>
+
 </div>
 
 
 <br>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
+// if the word length is equal or greater then 3 it call ajax request on keyup function
 $(document).ready(function(){
     var minlength = 3;
     var value = '';
@@ -70,24 +89,19 @@ $(document).ready(function(){
 
                     for (var i = 0; i < e; i++)
                         $("#search_result").append("<p>"+resp['result'][i]+"</p>");
-
 					}
                 });
 
         }
   });
   
-
-  $("p").click(function(){
+// this function is used when a user click on particular result the value is set to input box
+  $(document).on('click', 'p', function(){
     $("#search").val($(this).text());
+    $("#search_result").empty();
   });
 
 });
-
-
-
-
-
 
 </script>
 </body>
